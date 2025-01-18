@@ -178,7 +178,7 @@ if ( ! function_exists( 'astra_get_post_meta' ) ) {
 									/** @psalm-suppress PossiblyFalseOperand */ // phpcs:ignore Generic.Commenting.DocComment.MissingShort
 							}
 						}
-						$output_str .= esc_html( astra_get_option( 'blog-meta-author-avatar-prefix-label' ) ) . $astra_post_author_html;
+						$output_str .= esc_html( astra_get_i18n_option( 'blog-meta-author-avatar-prefix-label', _x( '%astra%', 'Blogs: Author Prefix Label', 'astra' ) ) ) . $astra_post_author_html;
 					}
 					break;
 
@@ -422,10 +422,12 @@ if ( ! function_exists( 'astra_post_author' ) ) {
 		ob_start();
 
 		echo '<span ';
-			echo astra_attr(
-				'post-meta-author',
-				array(
-					'class' => 'posted-by author',
+			echo wp_kses_post(
+				astra_attr(
+					'post-meta-author',
+					array(
+						'class' => 'posted-by author',
+					)
 				)
 			);
 		echo '>';
@@ -433,20 +435,24 @@ if ( ! function_exists( 'astra_post_author' ) ) {
 			<a title="<?php printf( esc_attr__( 'View all posts by %1$s', 'astra' ), esc_attr( strval( get_the_author() ) ) ); ?>"
 				href="<?php echo esc_url( get_author_posts_url( $author_id ) ); ?>" rel="author"
 				<?php
-					echo astra_attr(
-						'author-url',
-						array(
-							'class' => 'url fn n',
+					echo wp_kses_post(
+						astra_attr(
+							'author-url',
+							array(
+								'class' => 'url fn n',
+							)
 						)
 					);
 				?>
 				>
 				<span
 				<?php
-					echo astra_attr(
-						'author-name',
-						array(
-							'class' => 'author-name',
+					echo wp_kses_post(
+						astra_attr(
+							'author-name',
+							array(
+								'class' => 'author-name',
+							)
 						)
 					);
 				?>
